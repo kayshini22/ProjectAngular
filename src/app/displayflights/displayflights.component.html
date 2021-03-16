@@ -1,0 +1,81 @@
+<a><button (click)="setflag()" class="btn btn-primary" class="btn btn-info btn-lg" data-toggle="modal" data-target="#seats" style="margin-left:20px;background-color:#EDf5e1;color:navy">book</button></a>
+<div class="container">  
+    <div class="modal fade" id="seats" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- <div class="modal-header">
+            <h4 class="modal-title">Alert</h4>
+          </div> -->
+          <div class="modal-body">
+            <p>that's a great choice for journey ,Select seats from the next window.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="setfares()">Proceed</button>
+            <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<br>
+<br>
+<br>
+<div class="card shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="card-body">
+      <!-- <h3 class="card-title">Book Tickets</h3> -->
+      <!-- <div class="split left"> -->
+        <h3>Available flights for forward journey</h3>
+         <div *ngFor="let f of result_flights"> 
+            <div class="container">
+                <div class="card" style="width:400px;margin-bottom:20px;margin-top:50px">
+                    <div class="card-body" style="background-color:#EDf5e1;">
+                        <div class="card-text">
+                        Flight ID:{{f.flight_id}}<br>
+                        Flight Name:{{f.flight_name}}<br>
+                        Departure Time:{{f.departure_time}}
+                        <br>
+                        Arrival Time:{{f.arrival_time}}
+                        <br>
+                        Duration:{{f.duration}}
+                        <br>
+                        <!-- <a routerLink="/seatlayout"><button (click)=redirect(f.schedule_id)>book></button></a>  -->
+                        <label for="pick">
+                            <input type="checkbox" id="pick" name=:pick (click)="setforward(f.schedule_id)"/>
+                            pick this flight
+                        </label> 
+                        <hr />
+                        </div> 
+                    </div>
+                </div>
+            </div>
+         </div>
+        <br />
+    </div>
+  </div>
+  <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="card-body">
+            <h3>Available flights for return journey</h3>
+            <div *ngFor="let f of return_flights"> 
+                <div class="container">
+                    <div class="card" style="width:400px;margin-bottom:20px;margin-top:50px">
+                        <div class="card-body" style="background-color:#EDf5e1;">
+                             <div class="card-text">
+                    Flight ID:{{f.flight_id}}<br>
+                    Flight Name:{{f.flight_name}}<br>
+                    Departure Time:{{f.departure_time}}
+                    <br>
+                    Arrival Time:{{f.arrival_time}}
+                    <br>
+                    Duration:{{f.duration}}
+                    <br>
+                    <label for="pick">
+                        <input type="checkbox" id="pick" name=:pick (click)="setbackward(f.schedule_id)"/>
+                        pick this flight
+                    </label> 
+                            </div> 
+                         </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

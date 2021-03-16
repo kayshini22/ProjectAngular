@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="card-body">
+      <div id="confirmed" *ngFor="let t of bookedtickets">
+        <p>Booking ID: {{t.booking_id}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flight Name: {{t.flight_name}}</p>
+        <p>Source: {{t.source_destination}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Destination: {{t.target_destination}} </p>
+        <p>Passenger Name: {{t.name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Contact No.: {{t.phone}}</p>
+        <p>Seat No: {{t.seat_no}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Terminal: {{t.gate}}</p>
+        <p>Departure Time: {{t.departure_time}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Arrival Time: {{t.arrival_time}}</p>
+        <p>Travel Date: {{t.travel_date}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Price: {{t.cost}}</p>
+        <span style="margin-left: 230px; margin-top: 10px; padding-bottom: 15px;"><button class="btn btn-info btn-lg" (click)="calculatediff(t)" data-toggle="modal" data-target="#myModal">Cancel Ticket</button></span>
+        <hr>
+      </div>
+    </div>
+  </div>
+  </div>

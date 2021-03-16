@@ -1,0 +1,83 @@
+<div class="wrapper">
+<button class="open-button" (click)="openForm()">Add passenger<i class="fa fa-user-plus" aria-hidden="true"></i></button>
+  <!-- <p>Click to refresh<button (click)="reload()"><i class="fa fa-refresh" aria-hidden="true"></i></button></p> -->
+  <button (click)="proceed()" [disabled]="canproceed" class= "btn btn-success" style="margin-top:25px;margin-left:25px">proceed for checkout</button>
+  <div class="form-popup" id="myForm">
+      <form class="form-container" name="form" #form="ngForm" (ngSubmit)="Add(form.value)">
+        <h1>passenger details</h1>
+        <input type="text"  placeholder="Enter name" id="name" name="name" ngModel #name="ngModel" required/>
+        <span *ngIf="name.invalid && name.touched" class="error">*name is required</span>
+
+        <input type="text" placeholder="Enter address" id="address" name="address" ngModel #address="ngModel" pattern="[a-zA-Z0-9 /,-]*" required/>
+        <span *ngIf="address.invalid && address.touched" class="error">*address is invalid</span>
+
+        <input type="number" placeholder="Enter phone" id="phone" name="phone" ngModel #phone ="ngModel" minlength="10" maxlength="15" required/>
+        <span *ngIf="phone.invalid && phone.touched" class="error">*phone is required</span>
+        <br>
+        <label for="gender">select gender</label>
+        <br>
+        <input type="radio" value="male" id="gender" name="gender" ngModel #gender="ngModel"/>male
+        <input type="radio" value="female" id="gender" name="gender" ngModel #gender="ngModel"/>Female
+
+        <input type="number" placeholder="Enter age" id="age" name="age" ngModel #age="ngModel" required/>
+        <span *ngIf="age.invalid && age.touched" class="error">*age is required</span>
+        <br>
+
+        <label for="profession">select profession</label>
+        <select placeholder="Enter profession" id="profession" ngModel #profession="ngModel" name ="profession" required>
+            <option value="farmer">farmer</option>
+            <option value="Service">Army/Navy/Airforce</option>
+            <option value="student">Student</option>
+            <option value="others" selected>others</option>
+        </select>
+        <div [hidden]="profession.valid || profession.pristine" class="alert alert-danger">
+            Required
+        </div>
+        
+        <button type="submit" [disabled]="form.invalid" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add</button>
+        <button type="reset" class="btn cancel">Reset</button>
+        <button type="reset" class="btn cancel" (click)="close()">Close</button>
+      </form> 
+    </div>
+    <i class="bi bi-person-badge"></i>
+<div *ngFor="let p of passengers">
+  <div class="container">
+    <div class="card" style="width:400px;margin-bottom:20px;margin-top:50px">
+      <!-- <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%"> -->
+      <details>
+        <summary>{{p.name}}</summary>
+        <div class="card-body" style="background-color:#EDf5e1;">
+          <div class="card-text">
+            <p>{{p.address}}</p>
+            <p>{{p.phone}}</p>
+            <p>{{p.age}}</p>
+         </div>
+        <!-- <button (click)="remove(p.passenger_id)" class="btn btn-primary">Remove</button> -->
+        <button (click)="select(p.passenger_id)" class="btn btn-primary" [disabled]="isvalid">Select</button>
+      </div>
+    </details>
+  </div>
+</div>
+ <div class="container">  
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Success..!</h4>
+        </div>
+        <div class="modal-body">
+          <p>passenger added successfully</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="reload()">ok</button>
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button> -->
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+</div>

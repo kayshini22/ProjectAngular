@@ -1,0 +1,156 @@
+<div class="container">
+    <p>Select the flight number to view/update status</p>
+    <select #flightid (change)= "findFlight(flightid)"  class="form-control" >
+    <option value="" selected data-default class="current">Flight Number</option>
+    <option *ngFor="let flight of flights" [value]="flight.flight_id">{{flight.flight_id}}</option>
+     </select>
+     
+     <div *ngIf="flight.flight_id!=0" class="container">
+      <div>
+        <form (ngSubmit)="onSubmit()" #heroForm="ngForm" > 
+    
+        <div class="form-group">
+          <label>Source Destination </label>
+          <!-- <input class="form-control" type="text" [(ngModel)]="flight.source_destination" #source_destination="ngModel" required placeholder="Enter the source location"> -->
+          <select class="form-control" [(ngModel)]="flight.source_destination" required name="source_destination" #source_destination="ngModel" >
+              <option value="" selected data-default class="current">Source destination</option>
+              <option *ngFor="let s of city" [value]="s" >{{s}}</option>
+          </select>
+              <div [hidden]="source_destination.valid || source_destination.pristine"
+                       class="alert alert-danger">
+                       Required
+                  </div>
+                  </div>
+          <br>
+          <div class="form-group">
+          <label>Target Destination </label>
+          <!-- <input class="form-control" type="text" [(ngModel)]="flight.target_destination" #target_destination="ngModel" required placeholder="Enter the destination location"> -->
+          <select class="form-control" [(ngModel)]="flight.target_destination" required name="target_destination" #target_destination="ngModel" >
+              <option value="" selected data-default class="current">Target destination</option>
+              <option *ngFor="let s of city" [value]="s" >{{s}}</option>
+          </select>
+              <div [hidden]="target_destination.valid || target_destination.pristine"
+                       class="alert alert-danger">
+                       Required
+                  </div>
+                  </div>
+          <br>
+          <div class="form-group">
+          <label>Flight Name </label>
+          <input class="form-control" type="text" [(ngModel)]="flight.flight_name" name="flight_name" #flight_name="ngModel" required placeholder="Enter the name of the flight">
+          <!-- <span *ngIf="flight_name.touched">
+              <span *ngIf="flight_name.errors && flight_name.errors.required">Flight name required</span>
+              </span> -->
+              <div [hidden]="flight_name.valid || flight_name.pristine"
+                       class="alert alert-danger">
+                       Required
+                  </div>
+                  </div>
+          <br>
+          <div class="form-group">
+          <label>Economy Class Fare </label>
+          <input class="form-control" type="number" value="" [(ngModel)]="flight.economy_class_fare" name="economy_class_fare" #economy_class_fare="ngModel" required>
+          <!-- <span *ngIf="!economy_class_fare.touched">
+              <span *ngIf="economy_class_fare.errors && economy_class_fare.errors.required">Economy class fare is required</span>
+              </span> -->
+              <div [hidden]="economy_class_fare.valid || economy_class_fare.pristine"
+                       class="alert alert-danger">
+                       Required
+                  </div>
+                  </div>
+          <br>
+          <div class="form-group">
+          <label>Business Class Fare </label>
+          <input class="form-control" type="number" value="" [(ngModel)]="flight.business_class_fare" name="business_class_fare" #business_class_fare="ngModel" required>
+          <!-- <span *ngIf="!business_class_fare.touched">
+              <span *ngIf="business_class_fare.errors && business_class_fare.errors.required">Business class fare is required</span>
+              </span> -->
+              <div [hidden]="business_class_fare.valid || business_class_fare.pristine"
+                       class="alert alert-danger">
+                       Required
+                  </div>
+                  </div>
+          <br>
+          <div class="form-group">
+          <label>First Class Fare </label>
+          <input class="form-control" type="number" value="" [(ngModel)]="flight.first_class_fare" name="first_class_fare" required #first_class_fare="ngModel">
+          <!-- <span *ngIf="!premium_class_fare.touched">
+              <span *ngIf="premium_class_fare.errors && premium_class_fare.errors.required">Premium class fare is required</span>
+              </span> -->
+              <div [hidden]="first_class_fare.valid || first_class_fare.pristine"
+                       class="alert alert-danger">
+                       Required
+                  </div>
+                  </div>
+          <br>
+          <div class="form-group">
+          <label>Premium Class Fare </label>
+          <input class="form-control" type="number" value="" [(ngModel)]="flight.premium_class_fare" name="premium_class_fare" #premium_class_fare="ngModel" required>
+          <!-- <span *ngIf="!premium_class_fare.touched">
+              <span *ngIf="premium_class_fare.errors && premium_class_fare.errors.required">Premium class fare is required</span>
+              </span> -->
+              <div [hidden]="premium_class_fare.valid || premium_class_fare.pristine"
+                       class="alert alert-danger">
+                       Required
+                  </div>
+                  </div>
+          <br>
+          <div class="form-group">
+          <label>Flight Status </label>
+          <select class="form-control" [(ngModel)]="flight.status" name="status" required #status="ngModel" >
+              <option value="" selected data-default class="current">Current status</option>
+              <option *ngFor="let s of statusvalid" [value]="s" >{{s}}</option>
+          </select>
+           <!-- <span *ngIf="status.touched">
+              <span *ngIf="status.errors && status.errors.required">Select the status</span>
+              </span>  -->
+              <div [hidden]="status.valid || status.pristine"
+                       class="alert alert-danger">
+                       Required
+                  </div>
+                  </div>
+          
+          <br>
+          <div class="form-group">
+          <label>Capacity of the economy class </label>
+          <input class="form-control" type="number" value="" [(ngModel)]="flight.capacity_economy_class" name="capacity_economy_class" required #capacity_economy_class="ngModel">
+          <div [hidden]="capacity_economy_class.valid || capacity_economy_class.pristine"
+                       class="alert alert-danger">
+                       Required
+                  </div>
+                  </div>
+          <br>
+          <div class="form-group">
+          <label>Capacity of the business class </label>
+          <input class="form-control" type="number" value="" [(ngModel)]="flight.capacity_business_class" name="capacity_business_class" required #capacity_business_class="ngModel">
+          <div [hidden]="capacity_business_class.valid || capacity_business_class.pristine"
+                       class="alert alert-danger">
+                       Required
+                  </div>
+                  </div>
+          <br>
+          <div class="form-group">
+          <label>Capacity of the first class </label>
+          <input class="form-control" type="number" value="" [(ngModel)]="flight.capacity_first_class" name="capacity_first_class" required #capacity_first_class="ngModel">
+          <div [hidden]="capacity_first_class.valid || capacity_first_class.pristine"
+                       class="alert alert-danger">
+                       Required
+                  </div>
+                  </div>
+          <br>
+          <div class="form-group">
+          <label>Capacity of the premuim class </label>
+          <input class="form-control" type="number" value="" [(ngModel)]="flight.capacity_premium_class" name="capacity_premium_class" required #capacity_premium_class="ngModel">
+          <div [hidden]="capacity_premium_class.valid || capacity_premium_class.pristine"
+                       class="alert alert-danger">
+                       Required
+                  </div>
+                  </div>
+        <br>
+          {{msg}}
+     <button  (click)="updateFlightData()" [disabled]="!heroForm.form.valid">Update flight data</button>
+     <br> 
+      </form>
+      </div>
+     </div>
+    </div>

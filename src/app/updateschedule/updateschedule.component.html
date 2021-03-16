@@ -1,0 +1,105 @@
+<div class="container">
+    <p>Select the flight number to view/update schedule </p>
+    <select #flightid (change)= "findFlight(flightid)"  class="form-control" >
+        <option value="" selected data-default class="current">Schedule token Id</option>
+         <option *ngFor="let schedule of schedules" [value]="schedule.schedule_id">{{schedule.schedule_id}}</option>
+     
+     </select>
+     <div *ngIf="schedule.schedule_id!=0" class="container">
+    
+       
+    <div>
+        <form (ngSubmit)="onSubmit()" #heroForm="ngForm"> 
+        <div class="form-group">
+        <label>Travel Date:</label>
+        <input type="text" [(ngModel)]="schedule.travel_date" name="travel_date" #travel_date="ngModel" required>
+        <div [hidden]="travel_date.valid || travel_date.pristine"
+             class="alert alert-danger">
+          Date is required
+        </div>
+        </div>
+        <br>
+        <div class="form-group">
+        <label>Departure time:</label>
+        <input type="time" [(ngModel)]="schedule.departure_time" name="departure_time" #departure_time="ngModel" required>
+        <div [hidden]="departure_time.valid || departure_time.pristine"
+             class="alert alert-danger">
+          Required
+        </div>
+    </div>
+        <br>
+        <div class="form-group">
+        <label>Arrival time:</label>
+        <input type="time" [(ngModel)]="schedule.arrival_time" name="arrival_time" #arrival_time="ngModel" required>
+        <div [hidden]="arrival_time.valid || arrival_time.pristine"
+             class="alert alert-danger">
+          Required
+        </div>
+    </div>
+    <br>
+            <div class="form-group">
+              <label>Duration:</label>
+              <input type="text" [(ngModel)]="schedule.duration"  name="duration" #duration="ngModel" required>
+              <div [hidden]="duration.valid || duration.pristine"
+                   class="alert alert-danger">
+                Required
+              </div>
+              
+          </div>
+        <br>
+       
+        <div class="form-group">
+        <label>Available economy class</label>
+        <input type="number" [(ngModel)]="schedule.avail_economy_class" name="avail_economy_class" #avail_economy_class="ngModel" required>
+        <div [hidden]="avail_economy_class.valid || avail_economy_class.pristine"
+             class="alert alert-danger">
+          Required
+        </div>
+    </div>
+        <br>
+        <div class="form-group">
+        <label>Available business class</label>
+        <input type="number" [(ngModel)]="schedule.avail_business_class" name="avail_business_class" #avail_business_class="ngModel" required>
+        <div [hidden]="avail_business_class.valid || avail_business_class.pristine"
+             class="alert alert-danger">
+          Required
+        </div>
+    </div>
+        <br>
+        <div class="form-group">
+        <label>Available first class</label>
+        <input type="number" [(ngModel)]="schedule.avail_first_class" name="avail_first_class" #avail_first_class="ngModel" required>
+        <div [hidden]="avail_first_class.valid || avail_first_class.pristine"
+             class="alert alert-danger">
+          Required
+        </div>
+    </div>
+        <br>
+        <div class="form-group">
+        <label>Available premium class</label>
+        <input type="number" [(ngModel)]="schedule.avail_premium_class" name="avail_premium_class" #avail_premium_class="ngModel" required>
+        <div [hidden]="avail_premium_class.valid || avail_premium_class.pristine"
+             class="alert alert-danger">
+          Required
+        </div>
+    </div>
+        <br>
+        <div class="form-group">
+        <label>Current status</label>
+        <select [(ngModel)]="schedule.status"  class="form-control" name="status" #status="ngModel" required>
+            <option value="" selected data-default class="current">Flight status</option>
+            <option *ngFor="let s of schedulestatus" [value]="s" >{{s}}</option>
+        </select>
+        <div [hidden]="status.valid || status.pristine"
+             class="alert alert-danger">
+          Required
+        </div>
+    </div>
+        <br>
+        {{msg}}
+        <button type="submit" (click)="updateScheduleData()" [disabled]="!heroForm.form.valid" >Add schedule</button>
+       </form>
+    </div>  
+    
+     </div>
+    </div>

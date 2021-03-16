@@ -1,0 +1,59 @@
+    <div class="hero">
+        <div class="form-box">
+            <div class="butt-box">
+                <div id="btn"></div>
+                <button class="tog" (click)="login()"><strong>LogIn</strong></button>
+                <button class="tog" (click)="register()"><strong>Register</strong></button>
+            </div>
+            <div id="login" class="input-form">
+            <form>
+                <input type="text" class="input-field" placeholder="Enter username" id="username" name="username" [(ngModel)]="userlogin.username" required/>
+                <input type="password" class="input-field" placeholder="Enter password" id="password" name="password" [(ngModel)]="userlogin.password" required/>
+                <button class="check-box" [routerLink]="['/forgetpassword']">Forget password</button>
+                <div *ngIf=msg class="error">
+                    {{msg}}
+                </div>
+                <button type="submit" (click)= "onlogin()" class="submit-btn">Log In</button>
+            </form>
+            </div>
+            <div class="input-form" id="register">
+            <form [formGroup]="registerForm" (ngSubmit)="onsubmit()">
+                <select name="title" id="title" class="select-field" formControlName="title">
+                    <option value="Mr">Mr</option>
+                    <option value="Ms">Ms</option>
+                    <option value="Mrs">Mrs</option>
+                </select>
+                <input type="text" formControlName="firstname" class="input-firstname"  placeholder="Enter firstname" id="firstname" name="firstname"/>
+                <span class="error" *ngIf="firstname.invalid && firstname.touched">firstname is invalid</span>
+
+                <input type="text" class="input-field" placeholder="Enter lastname" id="lastname" name="lastname" formControlName="lastname" />
+                <span class="error" *ngIf="lastname.invalid && lastname.touched">lastname is invalid</span>
+
+                <input type="email" class="input-field" placeholder="Enter Email ID" id="reg_username" name="reg_username" formControlName="username"/>
+                <span class="error" *ngIf="username.invalid && username.touched">username is invalid</span>
+
+                <input type="password" class="input-field" placeholder="Enter password" id="reg_password" name="reg_password" formControlName="password"/>
+                <span class="error" *ngIf="password.invalid && password.touched">password should be minimum of 8 characters length,one small alphabet</span>
+
+                <input type="password" class="input-field" placeholder="Confirm password" id="confirm_password" name="confirm_password" formControlName="confirm_password"/>
+                <span class="error" *ngIf="(confirm_password.invalid &&  confirm_password.touched ) || registerForm.errors?.mismatch">
+                    Password doesn't match
+                </span>
+
+                <input type="date" class="input-field" id="dob" name="dob" min ="1960-01-01" max="2021-01-14" formControlName="dob"/>
+                <!-- <span class="error" *ngIf="dob.invalid && dob.touched">Invalid phone number</span> -->
+
+                <input type="text" class="input-field" placeholder="Enter phone number" id="phone" name ="phone" formControlName="phone"/>
+                <span class="error" *ngIf="phone.invalid && phone.touched">Invalid phone number</span>
+                <div *ngIf=msg class="error">
+                    {{msg}}
+                </div>
+                <input type="submit" value ="Register" class="submit-btn" [disabled]="!registerForm.valid"/>
+            </form>
+        </div>
+        </div>
+        <div class="vector">
+            <img src="/assets/images/home.png" alt="">
+        </div>
+    </div>
+

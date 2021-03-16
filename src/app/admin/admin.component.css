@@ -1,0 +1,24 @@
+button{
+    background: rgb(1, 29, 51);
+    border-color: transparent;
+    color: #fff;
+    cursor: pointer;
+}
+.div1
+{
+    width: 50%;
+    margin-left: 350px;
+    margin-top: 30px;
+    background-color:lightskyblue;
+    box-sizing: border-box;
+}
+.container
+{
+    width: 60%;
+}
+@media only screen and (max-width:620px) {
+    /* For mobile phones: */
+    .container, .navbar-nav {
+      width:60%;
+    }
+}

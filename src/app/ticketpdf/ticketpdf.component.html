@@ -1,0 +1,52 @@
+
+<button class="btn btn-success" (click)="showtickets()">show ticket</button>
+
+<div *ngIf=isclicked>
+<div id="divid" class="container" style="width:auto">
+    <div id="top-bar">
+    Ticket
+        <div id="logo-ticketmatic">
+            <img src="/assets/images/logo.png" width="70px" height="70px">
+        </div>
+    </div>
+    <div *ngFor="let ticket of tickets" id="forward">
+        Flight Name:{{ticket.flight_name}}
+        <br>
+        Source:_destination{{ticket.source_destination}}
+        <br>
+        target_destination:{{ticket.target_destination}}
+        <br>
+        arrival_time:{{ticket.arrival_time}}
+        <br>
+        departure_time:{{ticket.departure_time}}
+        <br> 
+        passenger Name:{{ticket.name}}
+        <br>
+        seat No.:{{ticket.seat_no}}
+        <br>
+        gate:{{ticket.gate}}
+    </div> 
+    <div *ngFor="let t of returntickets" id="return">
+        Flight Name:{{t.flight_name}}
+        <br>
+        Source:_destination{{t.source_destination}}
+        <br>
+        target_destination:{{t.target_destination}}
+        <br>
+        arrival_time:{{t.arrival_time}}
+        <br>
+        departure_time:{{t.departure_time}}
+        <br> 
+        passenger Name:{{t.name}}
+        <br>
+        seat No.:{{t.seat_no}}
+        <br>
+        gate:{{t.gate}}
+    </div> 
+</div>
+ <button class="btn btn-success" (click)="download()">Download pdf</button>
+</div>
+
+
+
+

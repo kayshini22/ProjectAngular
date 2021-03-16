@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a routerLink="/Home" class="navbar-brand">
+    <img src="/assets/images/logo.png" height="75" width="75" alt="CoolBrand">
+</a>
+  <!-- <a class="navbar-brand" href="#">Expand at lg</a> -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExample05">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/Home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/Login" [attr.disabled]="isloggedin">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/Profile">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/Add">Addpassenger</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" routerLink="/pdfgeneration">Ticket generation</a>
+      </li> 
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/history">booking history</a>
+      </li> 
+    </ul>
+    <ul>
+    <li class="nav-item-pointer">
+      <a class="nav-link"><button (click)="logout()">Logout</button></a>
+    </li>
+  </ul>
+  </div>
+</nav>
+<!-- <router-outlet></router-outlet> -->

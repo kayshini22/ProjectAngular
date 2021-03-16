@@ -1,0 +1,66 @@
+
+<div class="container">
+
+  <form [formGroup]="searchForm"  (ngSubmit)="onSubmit()">
+
+       <label for="source_destination" style="font-size:20px">Enter Source Destination</label>
+       <input type ="text" id="source_destination" style="margin-left:15px;font-size:20px"  name="source_destination" list="datalist" formControlName="source_destination">
+       <datalist id="datalist">
+         <option *ngFor ="let c of citylist" [value]="c">{{c}}</option>
+       </datalist>
+       
+      <label for="target_destination" style="margin-left:30px;font-size:20px;margin-top:10px">Target Destination is required</label>
+      <input type ="text" id="target_destination" style="margin-left:15px;font-size:20px;margin-top:10px" name="target_destination" list="datalist" formControlName="target_destination">
+       <datalist id="datalist">
+         <option *ngFor ="let c of citylist" [value]="c">{{c}}</option>
+       </datalist>
+       <br>
+       <span class="error" *ngIf="f.source_destination.touched && f.source_destination.errors">Source Destination is required</span>
+       <span class="error" style="margin-left:50px" *ngIf="f.target_destination.touched && f.target_destination.errors">Select Target Destination</span>
+       <br>
+
+      <label for="travel_date" style="margin-left:20px;font-size:20px;margin-top:10px">Travel date </label>
+      <input type="date" name="travel_date" style="margin-left:15px;font-size:20px;margin-top:10px" placeholder="travel date" formControlName="travel_date"/>
+
+      <label for="Travellers" style="margin-left:15px;font-size:20px">Select the  number of passengers</label>
+      <input type="number" id="Travellers" name="Travellers" style="margin-left:15px;font-size:20px" placeholder="Travellers" formControlName="travellers"/>
+      <br>
+      <span class="error" *ngIf="f.travel_date.touched && f.travel_date.errors">travel date required</span>
+      <!-- <span class="error" *ngIf="Travellers.invalid && Travellers.touched">number of travellers is required</span> -->
+      <br>
+
+      <label for="flight_class" style="font-size:20px;margin-top:10px">Choose your comfort</label>
+      <select id="flight_class" name="flight_class" style="margin-left:15px;font-size:20px;margin-top:10px" formControlName="flight_class" >
+        <!-- <option *ngFor ="let cl of classlist" [value]="cl">{{cl}}</option> -->
+        <option value="">Economy</option>
+        <option value="">First Class</option>
+        <option value="">Business</option>
+        <option value="">Premium</option>
+      </select>
+      <!-- <br>
+      <span class="error" *ngIf="f.flight_class.touched && f.flight_class.errors">travel date required</span>
+      <br> -->
+
+
+      <label for="flight_class" style="margin-left:70px;font-size:20px;margin-top:10px">Select your trip</label>
+        <input type="radio" name="typeoftrip" style="margin-left:50px;font-size:20px;margin-top:10px" value="1">
+        <label style="font-size:20px;margin-top:10px">One way</label>
+          <div class="container">
+            <input type="radio" name="typeoftrip" style="font-size:20px;margin-top:10px;margin-left:725px"value="2" id="trip">
+            <label for="trip" style="font-size:20px;margin-top:10px">Round trip</label>
+            <span class="reveal-if-active" style="margin-left:20px">
+              <input type="date" name="return_date" formControlName="return_date" >
+            </span>
+          </div>
+     <p>
+       <button id="searchbtn" type="submit" class="btn btn-primary" [disabled]="searchForm.valid">Search</button>
+       <button id="resetbtn" type="reset" class="btn btn-warning">Reset</button>
+     </p>
+  </form>
+</div>
+ <app-displayflights [result_flights]="flights" [return_flights]="returnflights"></app-displayflights> 
+ 
+
+
+
+
